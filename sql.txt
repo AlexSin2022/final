@@ -1,0 +1,46 @@
+SELECT * FROM event;
+SELECT * FROM event_user;
+INSERT INTO event_user (event_id, user_id) VALUES (1, 6);
+SELECT username, email, mob_phone FROM users WHERE id IN (
+    SELECT user_id FROM event_user WHERE event_id IN (
+        SELECT id FROM event WHERE name_event = "Лесной поход"));
+INSERT INTO need (category, description) VALUES ('Стол', 'Компот');
+SELECT * FROM need;
+INSERT INTO event_user (event_id, user_id) VALUES (1, 6);
+INSERT INTO event_need_user (event_id, need_id, user_id) VALUES (1, 7, 4);
+SELECT * FROM event_need_user;
+SELECT category, description FROM need WHERE id IN (
+    SELECT need_id FROM event_need_user WHERE event_id IN (
+        SELECT id FROM event WHERE name_event = "Лесной поход"));
+SELECT username FROM users WHERE id IN (
+    SELECT user_id FROM event_need_user WHERE event_id IN (
+        SELECT id FROM event WHERE name_event = 'Лесной поход'));
+
+SELECT * FROM need WHERE id IN (
+    SELECT need_id FROM event_need_user WHERE event_id IN (
+        SELECT id FROM event WHERE name_event = "Лесной поход"));
+
+SELECT need.*, event_need_user.* FROM need
+    INNER JOIN event_need_user ON need.id = event_need_user.need_id;
+
+SELECT ENU.category, ENU.description, users.username FROM
+                            (SELECT need.*, event_need_user.* FROM need
+                             INNER JOIN event_need_user ON need.id = event_need_user.need_id) ENU
+                             LEFT JOIN users ON users.id = ENU.user_id;
+SELECT id FROM users WHERE username = ?
+
+CREATE TABLE "event_user" (
+event_id INTEGER NOT NULL,
+user_id INTEGER NOT NULL,
+FOREIGN KEY(event_id) REFERENCES event(id),
+FOREIGN KEY(user_id) REFERENCES users(id));
+
+SELECT DISTINCT username FROM users
+        INNER JOIN event_user ON users.id = event_user.user_id;
+
+SELECT id FROM need WHERE category=? AND description=?
+
+SELECT ENU.category, ENU.description FROM
+                            (SELECT need.*, event_need_user.* FROM need
+                             INNER JOIN event_need_user ON need.id = event_need_user.need_id) ENU
+                             LEFT JOIN users ON users.id = ENU.user_id WHERE users.id=?;

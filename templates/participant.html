@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Участники
+{% endblock %}
+
+{% block main %}
+    <h1>Участники мероприятия</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Имя</th>
+                <th scope="col">Телефон</th>
+                <th scope="col">email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in users %}
+            <tr>
+                <td>{{ row["username"] }}</td>
+                <td>{{ row["mob_phone"] }}</td>
+                <td>{{ row["email"] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

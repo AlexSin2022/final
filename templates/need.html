@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Need
+{% endblock %}
+
+{% block main %}
+    <h1>Общие потребности</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Категория</th>
+                <th scope="col">Описание</th>
+                <th scope="col">Ответственный</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in need %}
+            <tr>
+                <td>{{ row["category"] }}</td>
+                <td>{{ row["description"] }}</td>
+                <td>
+                {% if row["username"] != None %}
+                    {{ row["username"] }}
+                {% else %}
+                    <form method="post" >
+                        <input id="category" name="category" value="{{ row['category'] }}"  type="hidden">
+                        <input id="description" name="description" value="{{ row['description'] }}"  type="hidden">
+                        <button class="btn btn-outline-primary btn-block" name = "choice" type="submit">беру на себя</button>
+                    </form>
+                {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

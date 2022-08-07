@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Apology
+{% endblock %}
+
+{% block main %}
+     <h2>ОШИБКА</h2>
+    <div>{{ top }}</div>
+    <div>{{ top | urlencode }}/{{ bottom | urlencode }}</div>
+{% endblock %}
