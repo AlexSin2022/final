@@ -26,7 +26,7 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 #db = SQL("sqlite:///events.db")
 
-uri = os.getenv("postgres://ncuysuvnkairwl:c766c379dcb5d6b1a85263033beea27c3792ec7e0d249ba4c6d0cdca39bc4c97@ec2-54-194-211-183.eu-west-1.compute.amazonaws.com:5432/dht5er8aa5tuh
+uri = os.getenv("postgres://ncuysuvnkairwl:c766c379dcb5d6b1a85263033beea27c3792ec7e0d249ba4c6d0cdca39bc4c97@ec2-54-194-211-183.eu-west-1.compute.amazonaws.com:5432/dht5er8aa5tuh\
 ")
 if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://")
